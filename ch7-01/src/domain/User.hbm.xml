@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="domain.User" table="user">
+		<id name="id" length="32" column="id" type="java.lang.String">
+			<generator class="uuid.hex">
+			</generator>
+		</id>
+		<property name="userName" type="java.lang.String" column="userName"
+			length="32" not-null="false" />
+		<property name="password" type="java.lang.String" column="password"
+			length="256" not-null="false" />
+		<property name="realName" type="java.lang.String" column="realName"
+			length="32" not-null="false" />
+		<property name="gender" type="char" column="gender" length="2"
+			not-null="false" />
+		<property name="age" type="java.lang.Integer" column="age"
+			not-null="false" />
+		<property name="personalSignature" type="java.lang.String"
+			column="personalSignature" length="1024" not-null="false" />
+		<set name="informations" inverse="true" cascade="all" lazy="true">
+			<key column="publishingUser" />
+			<one-to-many class="domain.Information" />
+		</set>
+		<set name="comments" inverse="true" cascade="all" lazy="true">
+			<key column="commenter" />
+			<one-to-many class="domain.Comment" />
+		</set>
+	</class>
+</hibernate-mapping> 
