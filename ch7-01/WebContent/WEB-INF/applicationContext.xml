@@ -8,6 +8,17 @@
  http://www.springframework.org/schema/tx/spring-tx-2.0.xsd 
  http://www.springframework.org/schema/aop 
  http://www.springframework.org/schema/aop/spring-aop-2.0.xsd ">
+
+	<!-- ********************************************************************************************************** -->
+
+
+	<!-- applicationContext.xml,这个配置文件里面包含了数据源的配置和当前已经编写的几个类的bean配置 -->
+
+
+	<!-- ********************************************************************************************************** -->
+
+
+	<!-- 数据源的配置 -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver">
@@ -36,13 +47,135 @@
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.generate_statistics">true</prop>
-				<prop key="hibernate.connection.release_mode">true</prop>
+				<prop key="hibernate.connection.release_mode">auto</prop>
 				<prop key="hibernate.autoReconnect">true</prop>
 			</props>
 		</property>
 	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
 
-
+	<!-- 相关Bean的配置 -->
+	<bean id="userDAO" class="dao.imp.UserDAO">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="userDAOProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionFactory">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="userDAO" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED,-Exception</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="infoDAO" class="dao.imp.InfoDAO">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="infoDAOProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="infoDAO" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">
+					PROPAGATION_REQUIRED,-Exception
+				</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="commentDAO" class="dao.imp.CommentDAO">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="commentDAOProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="commentDAO" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED,-Exception</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="userService" class="service.imp.UserService">
+		<property name="userDAO">
+			<ref local="userDAOProxy" />
+		</property>
+	</bean>
+	<bean id="userServiceProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="targer">
+			<ref local="userService" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED,-Exception</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="infoService" class="service.imp.InfoService">
+		<property name="infoDAO">
+			<ref local="infoDAOProxy" />
+		</property>
+	</bean>
+	<bean id="infoServiceProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="targer">
+			<ref local="infoService" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED,-Exception</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="commentService" class="service.imp.CommentService">
+		<property name="commentDAO">
+			<ref local="commentDAOProxy" />
+		</property>
+	</bean>
+	<bean id="commentServiceProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="targer">
+			<ref local="commentService" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED,-Exception</prop>
+			</props>
+		</property>
+	</bean>
 </beans>
 	
  
