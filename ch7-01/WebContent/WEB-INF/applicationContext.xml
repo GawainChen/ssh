@@ -176,6 +176,11 @@
 			</props>
 		</property>
 	</bean>
+	<bean id="login" class="action.Login">
+		<property name="userService">
+			<ref bean="userServiceProxy" />
+		</property>
+	</bean>
 </beans>
 	
  
