@@ -12,7 +12,6 @@ import com.opensymphony.xwork2.ActionSupport;
 
 /**
  * @author Gawain_Chen 该Action处理登录事宜
- *
  */
 public class Login extends ActionSupport {
 	private IUserService userService;
