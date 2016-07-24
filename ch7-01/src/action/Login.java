@@ -14,6 +14,10 @@ import com.opensymphony.xwork2.ActionSupport;
  * @author Gawain_Chen 该Action处理登录事宜
  */
 public class Login extends ActionSupport {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1156371689456029568L;
 	private IUserService userService;
 	private String userName;
 	private String password;
@@ -39,7 +43,7 @@ public class Login extends ActionSupport {
 		}
 	}
 
-	public void setUerService(IUserService userService) {
+	public void setUserService(IUserService userService) {
 		this.userService = userService;
 	}
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
  http://www.springframework.org/schema/beans/spring-beans-2.0.xsd 
@@ -31,7 +32,7 @@
 
 	<!-- Hibernate SessionFactory -->
 	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource">
 			<ref local="dataSource" />
 		</property>
@@ -53,7 +54,7 @@
 		</property>
 	</bean>
 	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory">
 			<ref local="sessionFactory" />
 		</property>
@@ -67,7 +68,7 @@
 	</bean>
 	<bean id="userDAOProxy"
 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionFactory">
+		<property name="transactionManager">
 			<ref bean="transactionManager" />
 		</property>
 		<property name="target">
@@ -129,7 +130,7 @@
 		<property name="transactionManager">
 			<ref bean="transactionManager" />
 		</property>
-		<property name="targer">
+		<property name="target">
 			<ref local="userService" />
 		</property>
 		<property name="transactionAttributes">
@@ -148,7 +149,7 @@
 		<property name="transactionManager">
 			<ref bean="transactionManager" />
 		</property>
-		<property name="targer">
+		<property name="target">
 			<ref local="infoService" />
 		</property>
 		<property name="transactionAttributes">
@@ -167,7 +168,7 @@
 		<property name="transactionManager">
 			<ref bean="transactionManager" />
 		</property>
-		<property name="targer">
+		<property name="target">
 			<ref local="commentService" />
 		</property>
 		<property name="transactionAttributes">
@@ -176,7 +177,7 @@
 			</props>
 		</property>
 	</bean>
-	<bean id="login" class="action.Login">
+	<bean id="login" class="action.Login" scope="prototype">
 		<property name="userService">
 			<ref bean="userServiceProxy" />
 		</property>

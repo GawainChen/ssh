@@ -50,7 +50,7 @@ public class User {
 
 	}
 
-	public String getId() {
+/*	public String getId() {
 		return id;
 	}
 
@@ -111,6 +111,78 @@ public class User {
 	}
 
 	// 设置用户发布的信息User和Information是一对多的关系----一个用户可以发表多条信息
+	public void setInformations(Set<Information> informations) {
+		this.informations = informations;
+	}
+
+	public Set<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
+	}*/
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+	public String getPersonalSignature() {
+		return personalSignature;
+	}
+
+	public void setPersonalSignature(String personalSignature) {
+		this.personalSignature = personalSignature;
+	}
+
+	public Set<Information> getInformations() {
+		return informations;
+	}
+
 	public void setInformations(Set<Information> informations) {
 		this.informations = informations;
 	}

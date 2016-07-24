@@ -48,7 +48,7 @@ public class InfoService implements IInfoService {
 	public void updateInfo(Information information) {
 		if (information == null)
 			return;
-		if (information == null)
+		if (information.getId() == null)
 			return;
 		infoDAO.updateInfo(information);
 
