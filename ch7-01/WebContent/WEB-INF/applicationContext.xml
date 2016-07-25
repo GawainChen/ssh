@@ -177,7 +177,7 @@
 			</props>
 		</property>
 	</bean>
-	<bean id="login" class="action.Login" scope="prototype">
+	<bean id="login" class="action.Login">
 		<property name="userService">
 			<ref bean="userServiceProxy" />
 		</property>
