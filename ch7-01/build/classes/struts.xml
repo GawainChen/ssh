@@ -8,7 +8,7 @@
 	<constant name="struts.i18n.encoding" value="GBK"></constant>
 	<constant name="struts.enable.DynamicMethodInvocation" value="true"/>  
 	<package name="global" extends="struts-default">
-		<action name="logon_*" method="{1}" class="action.Login">
+		<action name="login_*" method="{1}" class="action.Login">
 			<result name="input">/WEB-INF/pages/login.jsp</result>
 			<result type="chain">main</result>
 		</action>
