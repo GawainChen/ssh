@@ -21,8 +21,7 @@ public class InfoDAO extends HibernateDaoSupport implements IInfoDAO {
 	@Override
 	public Information getInfoByID(String id) {
 
-		return (Information) this.getHibernateTemplate().get(Information.class,
-				id);
+		return (Information) this.getHibernateTemplate().get(Information.class, id);
 	}
 
 	@Override
@@ -48,6 +47,20 @@ public class InfoDAO extends HibernateDaoSupport implements IInfoDAO {
 	@Override
 	public List<Information> getAllInfo() {
 		String hsql = "from Information";
+		return this.getHibernateTemplate().find(hsql);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getAllType() {
+		String hsql = "select type from Information";
+		return this.getHibernateTemplate().find(hsql);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Information> getInfoByInfoType(String type) {
+		String hsql = "from Information where type = '" + type + "'";
 		return this.getHibernateTemplate().find(hsql);
 	}
 

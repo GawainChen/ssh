@@ -20,4 +20,9 @@ public interface IInfoDAO {
 	public List<Information> getInfoByInfoTitle(String title);
 
 	public List<Information> getAllInfo();
+
+	public List<String> getAllType();
+
+	public List<Information> getInfoByInfoType(String type);
+
 }

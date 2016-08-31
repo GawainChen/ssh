@@ -62,4 +62,11 @@ public class CommentService implements ICommentService {
 		return commentDAO.getAllComments();
 	}
 
+	@Override
+	public List<Comment> getCommentByInfoId(String infoId) {
+		if (infoId == null)
+			return null;
+		return commentDAO.getCommnetByInfoId(infoId);
+	}
+
 }

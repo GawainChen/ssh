@@ -66,4 +66,21 @@ public class InfoService implements IInfoService {
 		return infoDAO.getAllInfo();
 	}
 
+	@Override
+	public List<String> getAllTypes() {
+		return infoDAO.getAllType();
+	}
+
+	@Override
+	public List<Information> getInfoByType(String type) {
+		return infoDAO.getInfoByInfoType(type);
+	}
+
+	@Override
+	public void deleteInfoById(String infoId) {
+		infoDAO.deleteInfo(getInfoByID(infoId));
+		;
+
+	}
+
 }

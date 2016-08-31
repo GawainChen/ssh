@@ -14,4 +14,10 @@ public interface IInfoService {
 	public Information getInfoByID(String id);
 
 	public List<Information> getAllInfo();
+
+	public List<String> getAllTypes();
+
+	public List<Information> getInfoByType(String type);
+
+	public void deleteInfoById(String infoId);
 }

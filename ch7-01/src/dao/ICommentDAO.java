@@ -19,4 +19,6 @@ public interface ICommentDAO {
 	public List<Comment> getCommnetByTitle(String title);
 
 	public List<Comment> getAllComments();
+
+	public List<Comment> getCommnetByInfoId(String infoId);
 }

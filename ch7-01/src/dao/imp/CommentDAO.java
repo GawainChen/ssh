@@ -50,4 +50,11 @@ public class CommentDAO extends HibernateDaoSupport implements ICommentDAO {
 		return this.getHibernateTemplate().find(hsql);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Comment> getCommnetByInfoId(String infoId) {
+		String hsql = "from Comment where id = '" + infoId + "'";
+		return this.getHibernateTemplate().find(hsql);
+	}
+
 }

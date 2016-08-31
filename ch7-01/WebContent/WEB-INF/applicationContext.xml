@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
  http://www.springframework.org/schema/beans/spring-beans-2.0.xsd 
@@ -32,7 +31,7 @@
 
 	<!-- Hibernate SessionFactory -->
 	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource">
 			<ref local="dataSource" />
 		</property>
@@ -50,11 +49,12 @@
 				<prop key="hibernate.generate_statistics">true</prop>
 				<prop key="hibernate.connection.release_mode">auto</prop>
 				<prop key="hibernate.autoReconnect">true</prop>
+				<!-- <prop key="hibernate.hbm2ddl.auto">update</prop> -->
 			</props>
 		</property>
 	</bean>
 	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory">
 			<ref local="sessionFactory" />
 		</property>
@@ -182,6 +182,39 @@
 			<ref bean="userServiceProxy" />
 		</property>
 	</bean>
+	<bean id="main" class="action.Main">
+		<property name="userService">
+			<ref bean="userServiceProxy" />
+		</property>
+		<property name="infoService">
+			<ref bean="infoServiceProxy" />
+		</property>
+		<property name="commentService">
+			<ref bean="commentServiceProxy" />
+		</property>
+	</bean>
+	<bean id="register" class="action.Register">
+		<property name="userService">
+			<ref bean="userServiceProxy" />
+		</property>
+	</bean>
+	<bean id="controlPanel" class="action.ControlPanel">
+		<property name="userService">
+			<ref bean="userServiceProxy" />
+		</property>
+	</bean>
+
+<!-- 	<bean id="information" class="action.InformationAction">
+		<property name="infoService">
+			<ref bean="infoServiceProxy" />
+		</property>
+		<property name="userService">
+			<ref bean="userServiceProxy" />
+		</property>
+		<property name="commentService">
+			<ref bean="commentServiceProxy" />
+		</property>
+	</bean> -->
 </beans>
 	
  

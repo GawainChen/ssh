@@ -14,4 +14,6 @@ public interface ICommentService {
 	public Comment getCommentByID(String id);
 
 	public List<Comment> getAllComment();
+
+	public List<Comment> getCommentByInfoId(String infoId);
 }
