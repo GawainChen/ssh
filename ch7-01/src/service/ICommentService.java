@@ -16,4 +16,6 @@ public interface ICommentService {
 	public List<Comment> getAllComment();
 
 	public List<Comment> getCommentByInfoId(String infoId);
+
+	public void deleteCommentId(String commentId);
 }

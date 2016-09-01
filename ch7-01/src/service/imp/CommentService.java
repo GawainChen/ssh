@@ -69,4 +69,12 @@ public class CommentService implements ICommentService {
 		return commentDAO.getCommnetByInfoId(infoId);
 	}
 
+	@Override
+	public void deleteCommentId(String commentId) {
+		if (commentId == null)
+			return;
+		commentDAO.deleteCommnetByInfoId(commentId);
+
+	}
+
 }

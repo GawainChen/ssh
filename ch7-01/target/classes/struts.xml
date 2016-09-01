@@ -6,7 +6,8 @@
 	<constant name="struts.objectFactory" value="spring"></constant>
 	<constant name="struts.devMode" value="true"></constant>
 	<constant name="struts.i18n.encoding" value="GBK"></constant>
-	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<!-- <constant name="struts.enable.DynamicMethodInvocation" value="true" 
+		/> -->
 	<package name="global" extends="struts-default">
 		<action name="login_*" method="{1}" class="action.Login">
 			<result name="input">/WEB-INF/pages/login.jsp</result>
@@ -33,6 +34,13 @@
 			<result name="detail">/WEB-INF/pages/informationDetail.jsp</result>
 			<result name="list">/WEB-INF/pages/informationList.jsp</result>
 			<result type="chain">information_list</result>
+		</action>
+		<action name="comment_*" method="{1}" class="action.CommentAction">
+			<result name="input">/WEB-INF/pages/addComment.jsp</result>
+			<result type="chain">information_detail</result>
+		</action>
+		<action name="*">
+			<result>/{1}.jsp</result>
 		</action>
 	</package>
 </struts>

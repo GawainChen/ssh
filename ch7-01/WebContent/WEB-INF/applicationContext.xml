@@ -204,7 +204,7 @@
 		</property>
 	</bean>
 
-<!-- 	<bean id="information" class="action.InformationAction">
+	<bean id="information" class="action.InformationAction">
 		<property name="infoService">
 			<ref bean="infoServiceProxy" />
 		</property>
@@ -214,7 +214,19 @@
 		<property name="commentService">
 			<ref bean="commentServiceProxy" />
 		</property>
-	</bean> -->
+	</bean>
+
+	<bean id="comment" class="action.CommentAction">
+		<property name="infoService">
+			<ref bean="infoServiceProxy" />
+		</property>
+		<property name="userService">
+			<ref bean="userServiceProxy" />
+		</property>
+		<property name="commentService">
+			<ref bean="commentServiceProxy" />
+		</property>
+	</bean>
 </beans>
 	
  

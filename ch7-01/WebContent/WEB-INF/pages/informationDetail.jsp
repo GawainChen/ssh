@@ -84,7 +84,7 @@
 								<s:param name="infoId">
 									<s:property value="infoId" />
 								</s:param>
-							</s:url> <s:a href="{addComment}">发表评论</s:a></li>
+							</s:url> <s:a href="%{addComment}">发表评论</s:a></li>
 					</ul>
 				</div>
 			</div>

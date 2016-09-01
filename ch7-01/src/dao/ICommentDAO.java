@@ -21,4 +21,6 @@ public interface ICommentDAO {
 	public List<Comment> getAllComments();
 
 	public List<Comment> getCommnetByInfoId(String infoId);
+
+	public void deleteCommnetByInfoId(String commentId);
 }

@@ -57,4 +57,10 @@ public class CommentDAO extends HibernateDaoSupport implements ICommentDAO {
 		return this.getHibernateTemplate().find(hsql);
 	}
 
+	@Override
+	public void deleteCommnetByInfoId(String commentId) {
+		this.getHibernateTemplate().delete(this.getHibernateTemplate().get(Comment.class, commentId));
+
+	}
+
 }
